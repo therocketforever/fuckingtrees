@@ -27,5 +27,6 @@ class Seed
   property :id, Serial
   
   belongs_to :apple # "and a seed belongs to an apple"
+end
   
 DataMapper.finalize.auto_upgrade!
