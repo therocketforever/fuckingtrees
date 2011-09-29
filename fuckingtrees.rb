@@ -46,6 +46,7 @@ class Creature
   property :salt, String
   property :fairy, Boolean
   property :elf, Boolean
+  property :worm, Boolean
   
   validates_presence_of :login
   
