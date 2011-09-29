@@ -51,7 +51,7 @@ class Bag
   property :id, Serial
   
   belongs_to :creature # Each bag belongs to one Creature.
-  has n :apples #each bag can hold many apples
+  has n, :apples #each bag can hold many apples
 end
 
 DataMapper.finalize.auto_upgrade!
