@@ -96,7 +96,7 @@ end
 
 post '/login' do
   if session[:creature] = Creature.authenticate(params[:login], params[:password])
-    redirect '/creatures'
+    redirect '/orchard'
   else
     redirect '/login'
   end
@@ -109,6 +109,19 @@ end
 
 #Routes
 get '/' do
-  @title = 'Orchard'
+  if authorized?
+    redirect '/orchard'
+  else
+    redirect '/login'
+  end
+end
+
+get '/orchard' do
+  authorize!
   erb :orchard
+end
+
+get '/trees' do
+  authorize!
+  erb :trees
 end

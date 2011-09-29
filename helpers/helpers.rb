@@ -3,7 +3,7 @@ helpers do
     return true if session[:creature]
   end
   def authorize!
-    redirect '/login'
+    redirect '/login' unless authorized?
   end
   def logout!
     session[:creature] = false
