@@ -117,11 +117,30 @@ get '/' do
 end
 
 get '/orchard' do
-  authorize!
   erb :orchard
 end
 
 get '/trees' do
   authorize!
   erb :trees
+end
+
+get '/apples' do
+  authorize!
+  erb :apples
+end
+
+get '/seeds'
+  authorize!
+  erb :apples
+end
+
+get '/creatures'
+  authorize!
+  erb :apples
+end
+
+get '/bag'
+  authorize!
+  erb :apples
 end
