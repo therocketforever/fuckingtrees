@@ -62,6 +62,13 @@ class Creature
     Digest::SHA1.hexdigest(pass + salt)
   end
   
+  def self.authenticate(login, pass)
+    c = Creature.first(:login => login)
+    return nil if c.nil?
+    return c if Creature.encrypt(pass, c.salt) == c.hashed_password
+    nil
+  end
+  
   def self.random_string(len)
     chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
     str = ""
