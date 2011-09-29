@@ -47,7 +47,7 @@ class Creature
   property :fairy, Boolean
   property :elf, Boolean
   
-  validates_pressence_of :login
+  validates_presence_of :login
   
   has 1, :bag # Each creature has 1 bag.
   has n, :apples, :through => :bag
