@@ -32,6 +32,25 @@ class Seed
   belongs_to :apple  # "and a seed belongs to an apple"
 end
 
+# Magic Creatures in charge.
+class Creature
+  include DataMapper::Resource
+  property :id, Serial
+  property :name, String
+  property :fairy, Boolean
+  property :elf, Boolean
+  
+  has 1, :bag
+end
+
+# Each Creature has a Magic Bag.
+class Bag
+  include DataMapper::Resource
+  property :id, Serial
+  
+  belongs_to :creature
+end
+
 DataMapper.finalize.auto_upgrade!
 
 get '/' do
