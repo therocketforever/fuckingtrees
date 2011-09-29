@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'datamapper'
 require 'digest/sha1'
-
+require_relative 'helpers/helpers'
 enable :sessions
 
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/orchard.db")
@@ -88,16 +88,7 @@ end
 
 DataMapper.finalize.auto_upgrade!
 
-get '/' do
-  @title = 'Orchard'
-  erb :orchard
-end
-
-get '/trees' do
-  @tree = Tree.get params[:id]
-  erb :trees
-end
-
+# User authentication. 
 get '/login' do
   @title = 'Login'
   erb :login
@@ -105,7 +96,7 @@ end
 
 post '/login' do
   if session[:creature] = Creature.authenticate(params[:login], params[:password])
-    redirect '/'
+    redirect '/creatures'
   else
     redirect '/login'
   end
@@ -114,4 +105,10 @@ end
 get '/logout' do
   logout!
   redirect '/'
+end
+
+#Routes
+get '/' do
+  @title = 'Orchard'
+  erb :orchard
 end
